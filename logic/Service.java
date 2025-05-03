@@ -30,7 +30,7 @@ public class Service{
                 setIncome();
                 break;
             case 2: 
-                setSavingGoal();
+                setSavingsGoal();
                 break;
             case 3:
                 addExpense();
