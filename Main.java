@@ -1,5 +1,9 @@
 public class Main{
     public static void main(String [] args){
-        System.out.println("Does it work?");
+        Service service = new Service();
+        service.run();
+        // take in their monthly income
+
+        // take in how much they want to spend
     }
 }
