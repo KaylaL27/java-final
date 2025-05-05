@@ -1,10 +1,11 @@
 package money;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
+// The Budget class stores and manages the user's income, goal, and transactions
 public class Budget {
+    // Let's encapsulate income, goal, and transactions for privacy
     private double income;
     private double goal;
     private List<Transactions> transactions;
@@ -14,28 +15,37 @@ public class Budget {
         transactions = new ArrayList<>();
     }
 
-    //setter
+    // Sets the user's monthly income
     public void setIncome(double income){
         this.income = income;
     }
-    //getter
+    // Returns the user's monthly income
     public double getIncome(){
         return income;
     }
 
-    //setter
+    // Sets the user's savings goal
     public void setGoal(double goal){
         this.goal = goal;
     }
-    //getter
+    // Returns the user's savings goal
     public double getGoal(){
         return goal;
     }
     
+    // TRANSACTIONS
+
+    // Adds a transaction (either income or expense) to the list
     public void addTransactions(Transactions T){
         transactions.add(T);
     }
-    
+
+    // Returns all Transaction made
+    public List<Transactions> getTransactions() {
+        return transactions;
+    }
+
+    // Calculates and returns the total amount spent on expenses
     public double getTotalExpenses() {
         double total = 0.0;
         for (int i = 0; i < transactions.size(); i++) {
@@ -47,6 +57,7 @@ public class Budget {
         return total;
     }
 
+    // Calculates and returns the total additional income
     public double getAdditionalIncome() {
         return transactions.stream()
             .filter(t -> t instanceof Income)
@@ -54,10 +65,12 @@ public class Budget {
             .sum();
     }
     
+    // Function to calculate and retunr Remaing Budget
     public double getRemainingBudget() {
         return (income + getAdditionalIncome()) - goal - getTotalExpenses();
     }
 
+    // Function that returns recommended daily budget
     public double getDailyBudget() {
         return getRemainingBudget() / 30.0; // assuming 30 days in a month
     }
